@@ -1,17 +1,12 @@
-Pruebas
-
 # FlickrBook
 Práctica 2 Sistemas Distribuidos
 
-CLAVE DISTRIBUIDOS.
+CLAVE DISTRIBUIDOS. AppDistribuidos
 
-AppDistribuidos
-Clave:
-3a4dd7ef3ff2219670db5ce26b376507
-Secreto:
-4440df59b978f6d2
+<p>Clave (api_key): 3a4dd7ef3ff2219670db5ce26b376507</p>
+<p>Secreto: 4440df59b978f6d2</p>
 
-Guille: 157220291@N02
-Ch: 169526712@N02
-Sergio: 165056863@N06
-Dani: 170882299@N03
+<p>Guille: 157220291@N02</p>
+<p>Ch: 169526712@N02</p>
+<p>Sergio: 165056863@N06</p>
+<p>Dani: 170882299@N03</p>
