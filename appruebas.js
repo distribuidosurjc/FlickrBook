@@ -21,6 +21,7 @@ $(function () {
 			peticion = 'https://api.flickr.com/services/rest/?method=flickr.people.getInfo&api_key='
 				+ api_key + '&user_id=' + item.owner + '&format=json&nojsoncallback=1';
 			peticion_nombre(peticion, item); // Una petición para información de usuario
+			
 		}
 	});
 	console.log(items); // Mostramos por consola
@@ -34,7 +35,9 @@ function mostrar_fotos(info){
 		var url = 'https://farm'+item.farm+".staticflickr.com/"+item.server
 		+'/'+item.id+'_'+item.secret+'_t.jpg';
 		console.debug(url);       
-		$("#imagenes").append($("<img id=\"img\" />").attr("src",url));                         
+		
+		$("#imagenes").append($("<img id=\"img\" />").attr("src",url));   
+		$("#usuario").append($("<p class=\"busq\">"+item.name+"</p>")); 
 	}
 	//$("#imagenes #img").click(zoom);
 }
@@ -45,4 +48,5 @@ function peticion_nombre(peticion, item) { // Función para obtener nombre real 
 		real  = datos.person.realname._content; // Obtenemos nombre real
 		item.name = real; // Añadimos al ítem
 	});
+	
 }	
