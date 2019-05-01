@@ -19,17 +19,7 @@ $(function () {
 			mostrar_fotos(info);
 			peticion_nombre(peticion, item); // Una petición para información de usuario
 		}
-	}).then(function obtener_nombres() {  // Obtenemos nombres reales de cada usuario
-		for (i=0;i<item.length;i++) {  // Para cada item
-			var item = items[i];
-			peticion = 'https://api.flickr.com/services/rest/?method=flickr.people.getInfo&api_key='
-				+ api_key + '&user_id=' + item.owner + '&format=json&nojsoncallback=1';
-			peticion_nombre(peticion, item); // Una petición para información de usuario
-			
-			
-		}
-	});
-	console.log(items); // Mostramos por consola
+	})
 })
 
 function mostrar_fotos(info){
@@ -41,10 +31,11 @@ function mostrar_fotos(info){
 		var url = 'https://farm'+item.farm+".staticflickr.com/"+item.server
 		+'/'+item.id+'_'+item.secret+'_t.jpg';
 		console.debug(url);       
-		
+	
 		$("#imagenes").append($("<img id=\"img\" />").attr("src",url));   
 		
-	}$("#imagenes #img").click(zoom());
+	}
+	$("#imagenes #img").click(zoom);
 }
 
 var nW,nH,oH,oW;
