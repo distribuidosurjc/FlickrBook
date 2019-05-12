@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>FlickrBook</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -9,9 +9,20 @@
     <script src="app.js"></script>
   </head>
   <header>
-    <h1 class='header'> FlickrBook </h1>
+    <div class= 'titulo'>
+      <h1> FlickrBook </h1>
+    </div>
+    <div class = 'header' id= 'cabecera'>
+      
+    </div>
   </header>
   <body>
+      <div id="modal" class="modal">
+        <!-- The Close Button -->
+        <span class="close">&times;</span>
+        <!-- Modal Content (The Image) -->
+        <img class="modal-content" id="imagen_ampliada">
+      </div>
     <section>
       <div id="contenido"></div>
     </section>
