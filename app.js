@@ -1,13 +1,30 @@
-$(function() {
-	var peticion_fotos_contactos = 'https://api.flickr.com/services/rest/?&method=flickr.photos.getContactsPublicPhotos&api_key=' 
-	+ api_key + '&user_id=' +user_id + '&extras=date_upload%2C+date_taken%2C+owner_name%2C+icon_server%2C+original_format%2C+last_update&format=json&nojsoncallback=1';
-	$.getJSON(peticion_fotos_contactos, mostrar_fotos);
+var checked = false;
 
+$(function() {
 	mostrar_cabecera();
+	main();
 })
 
+function main() {
+	var contenedor = document.getElementById('contenido');
+	
+	if(contenedor.childElementCount > 0) { // Si se ha llamado a refrescar
+		contenedor.removeChild(document.getElementById('tabla'));
+	} 
+
+	var tabla = document.createElement('div');
+	tabla.setAttribute('id', 'tabla');
+	contenedor.appendChild(tabla);
+
+	friends = checked ? '1' : '0'; 
+
+	var peticion_fotos_contactos = 'https://api.flickr.com/services/rest/?&method=flickr.photos.getContactsPublicPhotos&api_key=' 
+	+ api_key + '&user_id=' +user_id + '&just_friends=' + friends + '&extras=date_upload%2C+date_taken%2C+owner_name&format=json&nojsoncallback=1';
+	$.getJSON(peticion_fotos_contactos, mostrar_fotos);
+}
+
 function mostrar_fotos(info) {
-	var principal = document.getElementById('contenido');
+	var principal = document.getElementById('tabla');
 	for (var i=0;i<info.photos.photo.length;i++) {
 		if(i % 5 == 0) {
 			var fila = document.createElement('div');
@@ -22,21 +39,25 @@ function mostrar_fotos(info) {
 		var url = 'https://farm'+item.farm+".staticflickr.com/"+item.server +'/'+item.id+'_'+item.secret+'_t.jpg';
 
 		columna.innerHTML += 
-		"<img id='photourl' class='foto' src=" + url + " onclick='zoom(this.parentElement)'>"+
-		"<h4 id='username'>" + item.username + "</h4>"+
-		"<h4 id='nombre_real'>" + "Cargando Nombre Real" + "</h4>"+
-		"<h6 id='datetaken'>" + item.datetaken + "</h6>"+
-		"<h1 id='userid' class='userid'>" + item.owner + "</h1>";
+		"<div id='contenedor_imagen' class='contenedor_imagen'>"+
+			"<img id='photourl' class='foto' src=" + url + " onclick='zoom(this.src)'>"+
+		"</div>" +
+		"<div id='contenedor_datos' class='contenedor_datos'>"+
+			"<h4 id='nombre_real'>" + "Cargando Nombre Real" + "</h4>"+
+			"<h4 id='username' onclick='timeline(this.parentElement.lastChild.innerHTML)'>" + item.username + "</h4>"+
+			"<h6 id='datetaken'>" + item.datetaken + "</h6>"+
+			"<h1 id='userid' class='userid'>" + item.owner + "</h1>"+
+		"</div>";
 			
 		fila.appendChild(columna);
-		addNombre(columna);
+		contenedor_datos = columna.lastChild;
+		addNombre(contenedor_datos);
 	}
 }
 
-function zoom(element) {
-	var img = element.childNodes[0].src;
+function zoom(img) {
 	img = img.substring(0,img.length-5) + 'b.jpg';
-	var modal = document.getElementById('modal');
+	var modal = document.getElementById('modalZoom');
 	var modalImg = document.getElementById("imagen_ampliada");
 	modal.style.display = "block";
 	modalImg.src = img;
@@ -50,7 +71,8 @@ function zoom(element) {
 
 function addNombre(columna) {
 	var nick = columna.lastChild.innerHTML;
-	var username = columna.childNodes[2];
+	var username = columna.childNodes[0];
+
 	peticion_nombre = 'https://api.flickr.com/services/rest/?method=flickr.people.getInfo&api_key='
 				+ api_key + '&user_id=' + nick + '&format=json&nojsoncallback=1';
 
@@ -74,10 +96,16 @@ function mostrar_cabecera(){
 		   var url = 'http://farm'+iconfarm+'.staticflickr.com/'+iconserver+'/buddyicons/'+user_id+'.jpg';
 	   }
 	   var cabecera = document.getElementById('cabecera');
-	   cabecera.innerHTML = "   <img id='avatar' src="+ url + " >     " + nombre + "</div>   <input type='checkbox' onchange='refrescar()' id ='check'  value='Familia'>Sólo Familia</p>";
+	   cabecera.innerHTML = "   <img id='avatar' src="+ url + " >     " +
+	   nombre + "</div>   <input type='checkbox' onchange='refrescar()' id ='check' value='Familia'>Sólo Familia</p>";
    });
 }
 
 function refrescar() {
-	console.log("refrescar");
+	checked = document.getElementById("check").checked;
+	main();
+}
+
+function timeline(element) {
+		console.log(element);
 }
