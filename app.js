@@ -107,5 +107,28 @@ function refrescar() {
 }
 
 function timeline(element) {
-		console.log(element);
+        var data = [];
+        var fecha_min = "2018-01-01";
+        var fecha_max = "2018-12-31";
+        var peticion = "https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=" + api_key + "&user_id=" + element + "&min_taken_date=" + fecha_min + "&max_taken_date=" + fecha_max + "&format=json&nojsoncallback=1";
+        $.getJSON( peticion, function timelineCompleto(info) {
+            console.log(info);
+           var principal = document.getElementById( 'MyTimeLine');
+            for(var i= 0; i<info.photos.photo.length;i++){
+                var elemento = info.photos.photo[i];
+		var url = 'https://farm'+elemento.farm+".staticflickr.com/"+elemento.server +'/'+elemento.id+'_'+elemento.secret+'_m.jpg';
+		
+                var item = { time: "2016-01-20", body: [{ tag: "img", attr: { src: url, width: "320px", cssclass: "img-responsive" } }, { tag: "p", content: "comentarios" }] };
+	            data.push(item);                
+            }
+            //console.log(data);
+        });
+        
+	$('#MyTimeLine').albeTimeline(data, {
+		effect: "zoomIn",
+		showMenu: false
+	});
+
+
 }
+

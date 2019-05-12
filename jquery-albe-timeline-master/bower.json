@@ -1,0 +1,34 @@
+{
+  "name": "jquery-albe-timeline",
+  "description": "JQuery plugin for rendering timelines from JSON data.",
+  "version": "4.0.0",
+  "main": "jquery-albe-timeline.js",
+  "dependencies": {},
+  "devDependencies": {
+    "jquery": "latest",
+    "animate.css": "latest",
+    "bootstrap": "latest"
+  },
+  "keywords": [
+    "timeline"
+  ],
+  "authors": [
+    "[object Object]"
+  ],
+  "license": "Unlicense",
+  "homepage": "https://github.com/Albejr/jquery-albe-timeline",
+  "ignore": [
+    "*.md",
+    "bower_components",
+    "templates",
+    "**/.*",
+    "node_modules",
+    "test",
+    "tests"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Albejr/jquery-albe-timeline.git"
+  },
+  "private": true
+}
