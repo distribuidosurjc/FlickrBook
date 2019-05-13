@@ -1,7 +1,7 @@
 var checked = false;
 var cambio = false;
 var fecha_min = "2018-01-01";
-var fecha_max = "2020-12-31";
+var fecha_max = "2018-12-31";
 
 $(function() {
     mostrar_cabecera();
@@ -155,6 +155,7 @@ function addComentario(comentario) {
         } else {
             comentario.innerHTML = "Foto sin comentarios";
         }
+
     })
 }
 
@@ -178,4 +179,7 @@ function cambiar_fecha() {
         fecha_max = "2019-12-31";
     }
     cambio = !cambio;
+
+
+
 }
