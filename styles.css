@@ -149,6 +149,23 @@
     font-weight: bold;
     transition: 0.3s;
 }
+.cambio_fecha:hover{
+	    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+#photourl{
+	cursor:pointer;
+}
+#username{
+	cursor:pointer;
+	
+}
+#username:hover{
+	text-decoration: underline;
+	color: blue;
+}
+
 
 
 /* 100% Image Width on Smaller Screens */
