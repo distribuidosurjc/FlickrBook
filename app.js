@@ -1,7 +1,7 @@
 var checked = false;
 var cambio = false;
-var fecha_min = "2019-01-01";
-var fecha_max = "2019-12-31";
+var fecha_min = "2018-01-01";
+var fecha_max = "2020-12-31";
 
 $(function() {
     mostrar_cabecera();
@@ -119,21 +119,43 @@ function timeline(element) {
             var elemento = info.photos.photo[i];
             var url = 'https://farm' + elemento.farm + ".staticflickr.com/" + elemento.server + '/' + elemento.id + '_' + elemento.secret + '_m.jpg';
             var fecha = elemento.datetaken.substring(0, 10);
-            var item = { time: fecha, body: [{ tag: "img", attr: { src: url, width: "320px", cssclass: "img-responsive" } }, { tag: "p", content: "<h1 class='comentario" + i + "'>" + elemento.id + '</h1>' }] };
+            var item = { time: fecha, body: [{ tag: "img", attr: { src: url, width: "320px", cssclass: "img-responsive" } }, { tag: "p", content: elemento.id }] };
             data.push(item);
         }
 
         $(document).ready(function() {
-            $('#myTimeline').albeTimeline(data);
-            mostrar_modal_timeline();
+            $('#myTimeline').albeTimeline(data, {
+                language: 'es-ES',
+            });
+            $.when(mostrar_modal_timeline()).then(actualizar_comentarios());
         });
     });
-    actualizar_comentarios();
 }
 
 function actualizar_comentarios() {
-    var comentarios = document.getElementsByClassName('comentario');
-    console.log(comentarios);
+    var list = document.getElementsByClassName('comentario');
+    for (var i = 1; i < list.length; i += 2) {
+        addComentario(list[i]);
+    }
+}
+
+function addComentario(comentario) {
+    var id = comentario.innerHTML;
+    peticion_comentarios = 'https://api.flickr.com/services/rest/?method=flickr.photos.comments.getList&api_key=' +
+        api_key + '&photo_id=' + id + '&format=json&nojsoncallback=1';
+
+    $.getJSON(peticion_comentarios, function(data) {
+        lista_comentarios = data.comments;
+        if (Object.keys(lista_comentarios).length > 1) { // Tiene comentarios
+            comentario.innerHTML = "";
+            for (var i = 0; i < data.comments.comment.length; i++) {
+                comentario.innerHTML += '<b>' + data.comments.comment[i].realname + ': </b>'
+                comentario.innerHTML += data.comments.comment[i]._content + '<br><br>';
+            }
+        } else {
+            comentario.innerHTML = "Foto sin comentarios";
+        }
+    })
 }
 
 function mostrar_modal_timeline() {
