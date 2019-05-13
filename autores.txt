@@ -1,0 +1,25 @@
+Empezamos la práctica dividiendo las tareas en varios apartados para que cada uno se centrara en un tema, y a medida que avanzaba acabamos trabajando todos en todo para lograr la integración de las partes.
+
+Nombre completo: Sergio Palacios Gil
+DNI: 48161205X
+Correo: s.palaciosg@alumnos.urjc.es
+Especialización:
+- HTML y CSSm incluyendo los modal. 
+
+Nombre completo: Christian Fabian Díaz Silva
+DNI: 40539112W
+Correo: cf.diaz.2017@alumnos.urjc.es
+Especialización:
+- JavaScript y JQuery.
+
+Nombre completo: Guillermo García Maroto
+DNI: 50359920V
+Correo: g.garciamaro@alumnos.urjc.es
+Especialización:
+- Plugin Albe Timeline.
+
+Nombre completo: Daniel Martín de Castro
+DNI: 04856929L
+Correo: d.martindec@alumnos.urjc.es
+Especialización:
+- API de Flickr, sus peticiones y los elementos JSON.
