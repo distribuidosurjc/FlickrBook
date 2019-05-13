@@ -1,7 +1,7 @@
 var checked = false;
 var cambio = false;
-var fecha_min = "2018-01-01";
-var fecha_max = "2018-12-31";
+var fecha_min = "2019-01-01";
+var fecha_max = "2019-12-31";
 
 $(function() {
     mostrar_cabecera();
@@ -113,8 +113,10 @@ function timeline(element) {
     var data = [];
     var peticion = "https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=" + api_key + "&user_id=" + element + "&min_taken_date=" + fecha_min + "&max_taken_date=" + fecha_max + "&extras=date_taken&format=json&nojsoncallback=1";
 
+    document.getElementById('user_tl').innerHTML = element;
+
     $.getJSON(peticion, function timelineCompleto(info) {
-        var principal = document.getElementById('MyTimeLine');
+
         for (var i = 0; i < info.photos.photo.length; i++) {
             var elemento = info.photos.photo[i];
             var url = 'https://farm' + elemento.farm + ".staticflickr.com/" + elemento.server + '/' + elemento.id + '_' + elemento.secret + '_m.jpg';
@@ -126,6 +128,7 @@ function timeline(element) {
         $(document).ready(function() {
             $('#myTimeline').albeTimeline(data, {
                 language: 'es-ES',
+                sortDesc: false
             });
             $.when(mostrar_modal_timeline()).then(actualizar_comentarios());
         });
@@ -170,16 +173,23 @@ function mostrar_modal_timeline() {
     }
 }
 
-function cambiar_fecha() {
+function cambiar_Fecha() {
     if (cambio) {
-        fecha_min = "2018-01-01";
-        fecha_max = "2018-12-31";
-    } else {
         fecha_min = "2019-01-01";
         fecha_max = "2019-12-31";
+    } else {
+        fecha_min = "2018-01-01";
+        fecha_max = "2018-12-31";
     }
     cambio = !cambio;
 
+    var contenedor = document.getElementById('modalTimeline');
+    contenedor.style.display = "none";
 
+    contenedor.removeChild(document.getElementById('myTimeline'));
+    var nueva_tl = document.createElement('div');
+    nueva_tl.setAttribute('id', 'myTimeline');
+    contenedor.appendChild(nueva_tl);
 
+    timeline(document.getElementById('user_tl').innerHTML);
 }

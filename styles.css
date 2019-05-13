@@ -7,7 +7,7 @@
 }
 
 .fila {
-    border: 5px solid #000000;
+    border: 5px solid green;
     height: 300px;
     margin: 10px;
 }
@@ -16,7 +16,7 @@
     align-content: center;
     text-align: center;
     float: left;
-    border: 3px solid #808080;
+    border: 3px solid red;
     padding-top: 5px;
     margin: 5px;
     width: 10%;
@@ -24,11 +24,11 @@
 }
 
 .columna:nth-child(odd) {
-    background-color: #fe9f01;
+    background-color: yellow;
 }
 
 .columna:nth-child(even) {
-    background-color: #0000db;
+    background-color: blue;
 }
 
 .userid {
