@@ -1,5 +1,6 @@
 .titulo {
     text-align: center;
+    font-size: 50px;
 }
 
 .header {
@@ -7,36 +8,59 @@
 }
 
 .fila {
-    border: 5px solid #000000;
-    height: 300px;
+    height: 180px;
     margin: 10px;
+    padding-left: 80px;
+    padding-top: 10px;
 }
 
-.columna {
-    align-content: center;
-    text-align: center;
+.celda {
     float: left;
     border: 3px solid #808080;
     padding-top: 5px;
     margin: 5px;
-    width: 10%;
-    height: 280px;
+    width: 125px;
+    height: 180px;
 }
 
-.columna:nth-child(odd) {
+.celda:nth-child(odd) {
     background-color: #fe9301;
 }
 
-.columna:nth-child(even) {
+.celda:nth-child(even) {
     background-color: #51b44b;
+}
+
+.contenedor_imagen {
+    width: 100px;
+    height: 100px;
+    padding-left: 12px;
+    vertical-align: middle;
+    text-align: center;
+    display: table-cell;
+}
+
+#avatar {
+    border: solid black 1px;
+}
+
+.foto {
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.foto:hover {
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.contenedor_datos {
+    text-align: center;
 }
 
 .userid {
     visibility: hidden;
 }
-
-
-/* Style the Image Used to Trigger the Modal */
 
 #myImg {
     border-radius: 5px;
@@ -48,29 +72,17 @@
     opacity: 0.7;
 }
 
-
-/* The Modal (background) */
-
 .modal {
     display: none;
-    /* Hidden by default */
     position: fixed;
-    /* Stay in place */
     z-index: 1;
-    /* Sit on top */
-    /* Location of the box */
     left: 0;
     top: 0;
     width: 100%;
-    /* Full width */
     height: 100%;
-    /* Full height */
     overflow: auto;
-    /* Enable scroll if needed */
     background-color: rgb(0, 0, 0);
-    /* Fallback color */
     background-color: rgba(0, 0, 0, 0.9);
-    /* Black w/ opacity */
     overflow-y: auto;
 }
 
@@ -78,18 +90,12 @@
     padding-top: 100px;
 }
 
-
-/* Modal Content (Image) */
-
 .modal-content {
     margin: auto;
     display: block;
     width: 80%;
     max-width: 700px;
 }
-
-
-/* Caption of Modal Image (Image Text) - Same Width as the Image */
 
 #caption {
     margin: auto;
@@ -101,9 +107,6 @@
     padding: 10px 0;
     height: 150px;
 }
-
-
-/* Add Animation - Zoom in the Modal */
 
 .modal-content,
 #caption {
@@ -120,9 +123,6 @@
     }
 }
 
-
-/* The Close Button */
-
 .close {
     position: absolute;
     top: 15px;
@@ -134,7 +134,9 @@
 }
 
 .close:hover,
-.close:focus {
+.close:focus,
+.cambio_fecha:hover,
+.cambio_fecha:focus {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
@@ -149,26 +151,18 @@
     font-weight: bold;
     transition: 0.3s;
 }
-.cambio_fecha:hover{
-	    color: #bbb;
+
+.cambio_fecha:hover {
+    color: #bbb;
     text-decoration: none;
     cursor: pointer;
 }
-#photourl{
-	cursor:pointer;
-}
-#username{
-	cursor:pointer;
-	
-}
-#username:hover{
-	text-decoration: underline;
-	color: blue;
-}
 
-
-
-/* 100% Image Width on Smaller Screens */
+.username:hover {
+    text-decoration: underline;
+    color: #2323ff;
+    cursor: pointer;
+}
 
 @media only screen and (max-width: 700px) {
     .modal-content {

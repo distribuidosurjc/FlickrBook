@@ -8,32 +8,32 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="credencialesFlickr.js"></script>
     <script src="app.js"></script>
-    <link rel="stylesheet" href="style-albe-timeline.css" />
+    <link rel="stylesheet" href="version-style-albe-timeline.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="jquery-albe-timeline.min.js"></script>
+    <script src="version-jquery-albe-timeline.min.js"></script>
 </head>
 <header>
-    <div class="titulo">
-        <h1>FlickrBook</h1>
+    <div>
+        <h1 class="titulo">FlickrBook</h1>
     </div>
     <div class="header" id="cabecera"></div>
 </header>
 
 <body>
-    <section>
+    <section name='Modal para ampliar las Fotos'>
         <div id="modalZoom" class="modal">
             <span class="close">&times;</span>
             <img class="modal-content" id="imagen_ampliada" />
         </div>
     </section>
 
-    <section>
+    <section name='Sección para el contenido de las imágenes'>
         <div id="contenido"></div>
     </section>
 
-    <section>
+    <section name='Modal para el Timeline'>
         <div id="modalTimeline" class="modal">
-            <span class="cambio_fecha" id="cambiar_fecha" onclick="cambiar_Fecha()">Cambiar Fecha</span>
+            <span class="cambio_fecha" id="cambiar_fecha" onclick="cambiar_Fecha()">Cambiar a Año Anterior</span>
             <p id='user_tl' class='userid'></p>
             <span class="close" id="closeTL">&times;</span>
             <div id="myTimeline"></div>
