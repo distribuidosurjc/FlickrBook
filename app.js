@@ -41,6 +41,10 @@ function mostrar_fotos(info) {
         var item = info.photos.photo[i];
         var url = 'https://farm' + item.farm + ".staticflickr.com/" + item.server + '/' + item.id + '_' + item.secret + '_t.jpg';
 
+       var dt = new Date(item.datetaken);
+        var dia = dt.getDate();
+        var mes = dt.getMonth();
+        var anno = dt.getFullYear();
         columna.innerHTML +=
             "<div id='contenedor_imagen' class='contenedor_imagen'>" +
             "<img id='photourl' class='foto' src=" + url + " onclick='zoom(this.src)'>" +
@@ -48,7 +52,7 @@ function mostrar_fotos(info) {
             "<div id='contenedor_datos' class='contenedor_datos'>" +
             "<h4 id='nombre_real'>" + "Cargando Nombre Real" + "</h4>" +
             "<h4 id='username' onclick='timeline(this.parentElement.lastChild.innerHTML)'>" + item.username + "</h4>" +
-            "<h6 id='datetaken'>" + item.datetaken + "</h6>" +
+            "<h4 id='datetaken'>" + dia+"/"+mes+"/"+anno + "</h4>" +
             "<h1 id='userid' class='userid'>" + item.owner + "</h1>" +
             "</div>";
 
